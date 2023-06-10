@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
 
-// TODO: 2023/2/22 这个包
+// TODO: 2023/2/22 这个包,用于资源放行
 
 @Configuration //系统配置注解
 public class InterceptorConfigurer implements WebMvcConfigurer {
