@@ -1,0 +1,366 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>场次信息管理</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <style>
+        table{
+            text-align: center;
+            width: 98%;
+        }
+        .fa{
+            margin-right: 10px;
+        }
+        b{
+            color: #888881;
+        }
+        .table-striped > tbody > tr:nth-of-type(odd) {
+            background-color: #e6e9ef36;
+        }
+        .input-group-addon {
+            color: #5c5757bf;
+            background-color: #eeeeee75;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+        }
+        .btn-primary:hover{
+            background-position: 0;
+        }
+    </style>
+</head>
+<link rel="stylesheet" href="../bootstrap3.3.7/css/bootstrap.css">
+<link rel="stylesheet" href="../css/tanchuangcss.css">
+<link rel="stylesheet" href="../bootstrap3.3.7/css/bootstrap-theme.css">
+<link rel="stylesheet" href="../my/index.css">
+<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+<body style="background-color: rgb(234,237,241);">
+<div id="web">
+    <%--顶部导航栏--%>
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-image: linear-gradient(to bottom, rgb(55,61,65) 0%, rgb(55,61,65) 100%);border: 0">
+        <div class="container navbar-default" style="background-image: linear-gradient(to bottom, rgb(55,61,65) 0%, rgb(55,61,65) 100%);margin-left: 0px">
+            <nav class="navbar" style="display: contents">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#" style="color: white">影院管理系统</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="${pageContext.request.contextPath}/admin/filmlist" style="color: white">影片管理</a></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/userlist" style="color: white">用户管理</a></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/orderlist" style="color: white">订单管理</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white;background-image: linear-gradient(to bottom, #191818 0%, #832f6b 100%);"  id="span-session"><span class="caret"></span></a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a href="${pageContext.request.contextPath}">网站首页</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="${pageContext.request.contextPath}/admin/logout">退出登录</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+    </nav>
+    <aside style="width: 240px;height: 100%;float: left;background: rgb(51,55,68);position: fixed;margin-top: 20px">
+        <nav style="width: 240px;height: 100%;float: left;margin-top: 30px;">
+            <a href="index.html" class="a" ><i class="fa fa-bar-chart fa-fw"></i>&nbsp;数据显示</a>
+            <a href="userlist.html" class="a" ><i class="fa fa-user fa-fw"></i>&nbsp;用户管理</a>
+            <a href="filmlist.html" class="a"><i class="fa fa-video-camera fa-fw"></i>&nbsp;电影管理</a>
+            <a href="cinemalist.html" class="a"><i class="fa fa-university fa-fw"></i>&nbsp;影院管理</a>
+            <a href="halllist.html" class="a"><i class="fa fa-television fa-fw"></i>&nbsp;影厅管理</a>
+            <a href="schedulelist.html" class="a" style="color: #239aff;background-color: rgb(41,44,54);"><i class="fa fa-th-list fa-fw"></i>&nbsp;电影排片</a>
+            <a href="evalist.html" class="a"><i class="fa fa-twitch fa-fw"></i>&nbsp;评论管理</a>
+            <a href="orderlist.html" class="a"><i class="fa fa-credit-card-alt fa-fw"></i>&nbsp;订单管理</a>
+
+        </nav>
+    </aside>
+
+</div>
+
+<div id="main" style="background: white;">
+    <button class="btn btn-primary" id="button" style="margin-left: 10px;margin-top: 20px;border-radius: 50px;width: 100px;border: 0;background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67,162,255)), to(rgb(67,162,255)));">添加场次</button>
+    <table class="table table-striped table-bordered" style="margin-left: 10px;color: #555551;margin-top: 15px;width: 98%" id="user-table">
+        <tr>
+            <td><b>场次编号</b></td>
+            <td><b>电影名称</b></td>
+            <td><b>电影院名称</b></td>
+            <td><b>放映厅名称</b></td>
+            <td><b>开始时间</b></td>
+            <td><b>剩余票数</b></td>
+            <td><b>操作</b></td>
+        </tr>
+
+    </table>
+    <nav aria-label="Page navigation">
+        <b style="float: left;margin-left: 20px;margin-top: 6px;" id="sum">共&nbsp;&nbsp;条数据</b>
+        <ul class="pagination" style="margin-top: 0;margin-left: 20px" id="page-ul">
+
+        </ul>
+    </nav>
+
+    <div id="modal" >
+        <div id="modal-content">
+            <span id="close">&times;</span>
+            <div style="width: 80%;height: 80%;margin: inherit">
+                <form id="add-form">
+                    <div class="form-group">
+                        <label for="inputusername">电影名</label>
+                        <input type="text" class="form-control" id="inputusername" placeholder="电影名" name="filmname">
+                    </div>
+                    <div class="form-group">
+                        <label for="bll">电影院名</label>
+                        <select class="form-control" name="cinemaname" id="bll">
+                            <optgroup label="影院列表">
+                                <option value="奥斯咔大影城">奥斯咔大影城</option>
+                                <option value="太平洋影院">太平洋影院</option>
+                                <option value="喵果儿影院">喵果儿影院</option>
+                                <option value="聚仁电影城">聚仁电影城</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="xmx">放映厅列表</label>
+                        <select class="form-control" name="hallname" id="xmx">
+                            <optgroup label="放映厅列表">
+                                <option value="A放映厅">A放映厅</option>
+                                <option value="B放映厅">B放映厅</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputtell">开始时间</label>
+                        <input type="datetime-local" class="form-control" step="1" id="inputtell" placeholder="开始时间" name="starttime">
+                    </div>
+                    <input type="button" class="btn btn-default" id="btn-add" value="添加">
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div id="modal1" style="display: none" >
+        <!-- 弹窗 -->
+
+        <div id="modal-content1">
+            <span id="close1">&times;</span>
+            <div style="width: 80%;height: 80%;margin: inherit">
+                <form id="update-form">
+                    <input type="text" name="schedule_id" id="inputschedule_id" style="display: none;">
+                    <div class="form-group">
+                        <label for="inputusername1">电影名</label>
+                        <input type="text" class="form-control" id="inputusername1" placeholder="电影名" name="filmname" >
+                    </div>
+                    <div class="form-group">
+                        <label for="sss">电影院名</label>
+                        <select class="form-control" name="cinemaname" id="sss">
+                            <optgroup label="影院列表">
+                                <option value="奥斯咔大影城">奥斯咔大影城</option>
+                                <option value="太平洋影院">太平洋影院</option>
+                                <option value="喵果儿影院">喵果儿影院</option>
+                                <option value="聚仁电影城">聚仁电影城</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ppp">放映厅列表</label>
+                        <select class="form-control" name="hallname" id="ppp">
+                            <optgroup label="放映厅列表">
+                                <option value="A放映厅">A放映厅</option>
+                                <option value="B放映厅">B放映厅</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputtell1">开始时间</label>
+                        <input type="datetime-local" class="form-control" step="1" id="inputtell1" placeholder="开始时间" name="starttime" >
+                    </div>
+                    <input type="button" class="btn btn-default" id="btn-update" value="修改">
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            Date.prototype.format = function(fmt) {
+                var o = {
+                    "M+" : this.getMonth()+1,                 //月份
+                    "d+" : this.getDate(),                    //日
+                    "h+" : this.getHours(),                   //小时
+                    "m+" : this.getMinutes(),                 //分
+                    "s+" : this.getSeconds(),                 //秒
+                    "q+" : Math.floor((this.getMonth()+3)/3), //季度
+                    "S"  : this.getMilliseconds()             //毫秒
+                };
+                if(/(y+)/.test(fmt)) {
+                    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+                }
+                for(var k in o) {
+                    if(new RegExp("("+ k +")").test(fmt)){
+                        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+                    }
+                }
+                return fmt;
+            }
+            var reg = new RegExp("(^|&)" + "page" + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg); //匹配目标参数
+            var page;
+            if (r != null) {
+                 page=unescape(r[2]);
+            }else {
+                page=1;
+            }
+            $.ajax({
+                "url":"/admin/showusername",
+                "type":"get",
+                "dataType":"json",
+                "success":function (res) {
+                    document.getElementById("span-session").innerHTML=res.username+"<span class=\"caret\"></span>"
+                }
+            })
+            $.ajax({
+                "url":"/admin/schedulelist",
+                "data":{"page":page},
+                "type":"get",
+                "dataType":"json",
+                "success":function (result) {
+                    var nextpage=parseInt(page-(-1));
+                    var prepage=parseInt(page-1);
+                    document.getElementById("sum").innerHTML="共&nbsp;"+result.total+"&nbsp;条数据"
+                    document.getElementById("page-ul").innerHTML+="<li>\n" +
+                        "                <a href='schedulelist.html?page="+prepage+"' aria-label=\"Previous\">\n" +
+                        "                    <span aria-hidden=\"true\">&laquo;</span>\n" +
+                        "                </a>\n" +
+                        "            </li>"
+                    for (j=1;j<=result.pages;j++){
+                        document.getElementById("page-ul").innerHTML+="<li><a href='schedulelist.html?page="+j+"'>"+j+"</a></li>"
+                    }
+                    document.getElementById("page-ul").innerHTML+="<li>\n" +
+                        "                <a href='schedulelist.html?page="+nextpage+"' aria-label=\"Next\">\n" +
+                        "                    <span aria-hidden=\"true\">&raquo;</span>\n" +
+                        "                </a>\n" +
+                        "            </li>"
+                    for (i=0;i<result.list.length;i++){
+                        var oldtime=(new Date(result.list[i].starttime)).getTime();
+                        var newtime=new Date(oldtime).format("yyyy-MM-dd hh:mm:ss")
+                        document.getElementById("user-table").innerHTML+="<tr><td>"+result.list[i].schedule_id+"</td>" +
+                            "<td>"+result.list[i].filmname+"</td>" +
+                            "<td>"+result.list[i].cinemaname+"</td>" +
+                            "<td>"+result.list[i].hallname+"</td>" +
+                            "<td>"+newtime+"</td>" +
+                            "<td>"+result.list[i].leaveticket+"</td>" +
+                            "<td><a  onclick='getAid(this)' id='"+result.list[i].schedule_id+"'><img src='../img/xiugai.png' style='width: 40px;'></a>"+
+                        "</td></tr>"
+                    }
+
+                }
+            })
+        })
+        $("#btn-add").click(function () {
+            $.ajax({
+                "url":"/admin/addSchedule",
+                "data":$("#add-form").serialize(),
+                "type":"post",
+                "dataType":"json",
+                "success":function (json) {
+                    if (json.state==1){
+                        alert("添加成功！")
+                        location.href="schedulelist.html"
+                    }else {
+                        alert(json.message)
+                    }
+                }
+            })
+        })
+    </script>
+    <script>
+        // 点击按钮
+        var button = document.getElementById("button");
+        var modal = document.getElementById("modal")
+        button.onclick = function () {
+            modal.style.display = "block";
+        };
+        //   关闭按钮
+        var modal1 = document.getElementById("modal1");
+        //   关闭按钮
+        document.getElementById("close1").onclick = function () {
+            modal1.style.display = "none";
+        };
+        //   点击其他领域(即弹窗背景)
+        window.onclick = function(event){
+            if(event.target ==modal1){
+                modal1.style.display = "none"
+            }
+        }
+        document.getElementById("close").onclick = function () {
+            modal.style.display = "none";
+        };
+        //   点击其他领域(即弹窗背景)
+        window.onclick = function(event){
+            if(event.target ==modal){
+                modal.style.display = "none"
+            }
+        }
+        function getAid(obj) {
+            id=obj.id;
+            modal1.style.display = "block";
+            $.ajax({
+                "url":"/admin/selectSchedule",
+                "data":{"schedule_id":id},
+                "type":"post",
+                "dataType":"json",
+                "success":function (json) {
+                    if (json.state==1){
+                        var oldtime1=(new Date(json.data.starttime)).getTime();
+                        var newtime1=new Date(oldtime1).format("yyyy-MM-ddThh:mm:ss")
+                        document.getElementById("inputschedule_id").value=json.data.schedule_id
+                        document.getElementById("inputusername1").value=json.data.filmname
+                        document.getElementById("sss").value=json.data.cinemaname
+                        document.getElementById("ppp").value=json.data.hallname
+                        document.getElementById("inputtell1").value=newtime1
+                    }else {
+                        alert(json.message)
+                    }
+                }
+            })
+            $("#btn-update").click(function () {
+                $.ajax({
+                    "url":"/admin/ updateSchedule",
+                    "data":$("#update-form").serialize(),
+                    "type":"post",
+                    "dataType":"json",
+                    "success":function (json) {
+                        if (json.state==1){
+                            alert("修改成功！")
+                            location.href="schedulelist.html"
+                        }else {
+                            alert(json.message)
+                        }
+                    }
+                })
+            })
+        }
+
+
+    </script>
+
+    <script src="../js/jquery2.2.2.min.js"></script>
+    <script src="../bootstrap3.3.7/js/bootstrap.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html en="lang">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>漫画</title>
+  <link rel="stylesheet" href="css/banner.css">
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <link rel="stylesheet" href="css/bottom.css">
+  <link rel="stylesheet" href="css/comic.css">
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+</head>
+<body style="width: 100%;">
+<div class="inner">
+  <div id="kuang1">
+    <div id="daohang">
+      <div id="name">
+        <h1>
+          <span>A</span>nime
+          <span>W</span>orld
+        </h1>
+      </div>
+      <div>
+        <ul class="k" style="width: 800px">
+          <li style="width: 90px;">
+            <a href="http://localhost:8081/user/film.html">电影世界</a>
+          </li>
+          <li style="width: 90px;">
+            <a href="http://localhost:8081/index.html"  style="color: #ff6347;">网站首页</a>
+          </li>
+
+          <li style="width: 90px;">
+            <a href="http://localhost:8081/admin/index.html">后台管理</a>
+          </li>
+          <li style="width: 90px;">
+            <a id="userinfo_center" href="http://localhost:8081/user/userinfo.html">个人中心</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<div  id="slide">
+  <ul id="ij">
+    <li><a href="#" style="width: 760px;height: 380px;position:absolute;z-index:1"></a></li>
+    <li><a href="#" style="width: 760px;height: 380px;position:absolute;z-index:1"></a></li>
+    <li><a href="#" style="width: 760px;height: 380px;position:absolute;z-index:1"></a></li>
+    <li><a href="#" style="width: 760px;height: 380px;position:absolute;z-index:1"></a></li>
+    <li><a href="#" style="width: 760px;height: 380px;position:absolute;z-index:1"></a></li>
+    <li><a href="#" style="width: 760px;height: 380px;position:absolute;z-index:1"></a></li>
+    <li><a href="#" style="width: 760px;height: 380px;position:absolute;z-index:1"></a></li>
+    <li><a href="#" style="width: 760px;height: 380px;position:absolute;z-index:1"></a></li>
+  </ul>
+  <div class="odiv_nav">
+    <span class="span_list"></span>
+    <span class="span_list"></span>
+    <span class="span_list"></span>
+    <span class="span_list"></span>
+    <span class="span_list"></span>
+
+  </div>
+  <div class="left_click"><</div>
+  <div class="right_click">></div>
+
+</div>
+
+
+<div id="yinying"></div>
+<div id="yinying2"></div>
+<script>
+  $(function(){
+    var num=0;
+    var timer=null;
+
+    go();
+    $('#slide').mouseenter(function(){
+      clearInterval(timer);
+    }).mouseleave(function(){
+      go();
+    });
+    $(".span_list").eq(0).css("backgroundColor","white");
+    function go(){
+      timer=setInterval(function(){
+        num++;
+
+        if(num>5){
+          num=1;
+          $("#ij").css("margin-left","0px");
+        }
+        if(num==5){
+          $(".span_list").css("backgroundColor","transparent");
+          $(".span_list").eq(0).css("backgroundColor","white");
+
+
+        }
+        else{
+          $(".span_list").css("backgroundColor","transparent");
+          $(".span_list").eq(num).css("backgroundColor","white");
+
+        }
+        $("#ij").animate({"margin-left":-760*num-380+"px"},580);
+      },2000);
+    }
+    $(".span_list").each(function(index){
+      $(this).click(function(){
+        num=index;
+        $(".span_list").css("backgroundColor","transparent");
+        $(".span_list").eq(num).css("backgroundColor","white");
+        $("#ij").stop().animate({"margin-left":-760*num-380+"px"},580);
+
+      })
+    });
+    $(".right_click").click(function(){
+      //右按钮点击事件，每点击一次num++,这里有很多的判断，是用来消除一些BUG的。
+
+      if(num<=5){num++;}
+      if(num>5){
+        num=1;
+        $("#ij").css("margin-left","0px");
+      }
+      if(num==5){
+        $(".span_list").css("backgroundColor","transparent");
+        $(".span_list").eq(0).css("backgroundColor","white");
+      }
+      else{
+        $(".span_list").css("backgroundColor","transparent");
+        $(".span_list").eq(num).css("backgroundColor","white");
+      }
+      $("#ij").stop().animate({"margin-left":-760*num-380+"px"},580);
+
+    });
+
+    $(".left_click").click(function(){//左按钮点击事件
+      if(num>=0){num--;}
+      if(num<0){
+        num=5;
+        $("#ij").css("margin-left","-3800px")
+        $(".span_list").css("backgroundColor","transparent");
+        $(".span_list").eq(3).css("backgroundColor","white");
+      }
+      else{
+        $(".span_list").css("backgroundColor","transparent");
+        $(".span_list").eq(num).css("backgroundColor","white");
+      }
+      $("#ij").stop().animate({"margin-left":-760*num-380+"px"},580);
+
+    });
+  })
+</script>
+<div id="fenlei">
+  <div style="width: 70%;margin: 0px auto;height: 30px;">
+    <h5 style="height: 30px;margin: 0;color: white;font-size: 50px;text-align: center;overflow: hidden;padding: 20px;padding-top: 5px;">
+      welcome to my world!
+    </h5>
+
+  </div>
+</div>
+<div style="width: 100%;">
+  <div id="weinituijian">
+    <div style="padding: 60px 0 20px 0;font-size: 32px;line-height: 45px;">
+      为你推荐
+    </div>
+    <div style="width: 100%;height: 760px;margin: 0;">
+      <div class="tuijian">
+        <a href="">
+          <div style="background-image:url(./img/31.png)">
+
+          </div>
+          <p>我独自盗墓</p>
+          <h6 class="lei">
+            冒险
+          </h6>
+        </a>
+      </div>
+      <div class="tuijian">
+        <a href="./详情1.html?name=2">
+          <div style="background-image:url(./img/32.png)">
+
+          </div>
+          <p>爷就是开挂少女</p>
+          <h6 class="lei">
+            古风
+          </h6>
+        </a>
+      </div>
+      <div class="tuijian">
+        <a href="./详情1.html?name=3">
+          <div style="background-image:url(./img/33.png)">
+
+          </div>
+          <p>骷髅骑士没能守住副本</p>
+          <h6 class="lei">
+            冒险
+          </h6>
+        </a>
+      </div>
+      <div class="tuijian">
+        <a href="./详情1.html?name=4">
+          <div style="background-image:url(./img/34.png)">
+
+          </div>
+          <p>骷髅奶爸</p>
+          <h6 class="lei">
+            治愈
+          </h6>
+        </a>
+      </div>
+      <div class="tuijian">
+        <a href="#">
+          <div style="background-image:url(./img/35.png)">
+
+          </div>
+          <p>修罗武神</p>
+          <h6 class="lei">
+            玄幻
+          </h6>
+        </a>
+      </div>
+      <div class="tuijian">
+        <a href="#">
+          <div style="background-image:url(./img/36.png)">
+
+          </div>
+          <p>垃圾堆里的皇女</p>
+          <h6 class="lei">
+            奇幻
+          </h6>
+        </a>
+      </div>
+      <div class="tuijian">
+        <a href="./详情1.html?name=7">
+          <div style="background-image:url(./img/37.png)">
+
+          </div>
+          <p>无法升级的玩家</p>
+          <h6 class="lei">
+            冒险
+          </h6>
+        </a>
+      </div>
+      <div class="tuijian">
+        <a href="./详情1.html?name=8">
+          <div style="background-image:url(./img/38.png)">
+
+          </div>
+          <p>最强王者</p>
+          <h6 class="lei">
+            热血
+          </h6>
+        </a>
+      </div>
+      <div class="tuijian">
+        <a href="./详情1.html?name=9">
+          <div style="background-image:url(./img/39.png)">
+
+          </div>
+          <p>真理面具</p>
+          <h6 class="lei">
+            校园
+          </h6>
+        </a>
+      </div>
+      <div class="tuijian">
+        <a href="./详情1.html?name=10">
+          <div style="background-image:url(./img/40.png)">
+
+          </div>
+          <p>桃花照玉案</p>
+          <h6 class="lei">
+            古风
+          </h6>
+        </a>
+      </div>
+      <div class="tuijian">
+        <a href="./详情1.html?name=11">
+          <div style="background-image:url(./img/41.png)">
+
+          </div>
+          <p>黑化王爷超难哄</p>
+          <h6 class="lei">
+            古风
+          </h6>
+        </a>
+      </div>
+      <div class="tuijian">
+        <a href="./详情1.html?name=12">
+          <div style="background-image:url(./img/42.png)">
+
+          </div>
+          <p>父皇是宠娃狂魔</p>
+          <h6 class="lei">
+            古风
+          </h6>
+        </a>
+      </div>
+
+
+    </div>
+  </div>
+  <div id="remensudi">
+    <div style="padding: 60px 0 20px 0;font-size: 32px;line-height: 45px;">
+      热门速递
+    </div>
+    <div style="width: 100%;height: 600px;">
+      <div class="sudi">
+        <a href="">
+          <div style="background-image:url(./img/43.png)">
+
+          </div>
+          <p>猫之茗</p>
+
+          <h6 class="lei">
+            天啊！穿越后不仅自己变成了小猫娘，遇到的小伙伴也都是小兽人！
+          </h6>
+
+
+        </a>
+      </div>
+      <div class="sudi">
+        <a href="">
+          <div style="background-image:url(./img/44.png)">
+
+          </div>
+          <p>子不语</p>
+          <h6 class="lei">
+            你想听听来自古老传说的回响吗？
+          </h6>
+        </a>
+      </div>
+      <div class="sudi">
+        <a href="">
+          <div style="background-image:url(./img/45.png)">
+
+          </div>
+          <p>境·界（死神）</p>
+          <h6 class="lei">
+            热血
+          </h6>
+        </a>
+      </div>
+      <div class="sudi">
+        <a href="">
+          <div style="background-image:url(./img/46.png)">
+
+          </div>
+          <p>拳愿奥米迦</p>
+          <h6 class="lei">
+            竞技
+          </h6>
+        </a>
+      </div>
+      <div class="sudi">
+        <a href="">
+          <div style="background-image:url(./img/47.png)">
+
+          </div>
+          <p>鬼刀</p>
+          <h6 class="lei">
+            追寻世界尽头的真相
+          </h6>
+        </a>
+      </div>
+      <div class="sudi">
+        <a href="">
+          <div style="background-image:url(./img/48.png)">
+
+          </div>
+          <p>从前有座剑灵山</p>
+          <h6 class="lei">
+            玄幻
+          </h6>
+        </a>
+      </div>
+      <div class="sudi">
+        <a href="">
+          <div style="background-image:url(./img/49.png)">
+
+          </div>
+          <p>小林家的龙女仆</p>
+          <h6 class="lei">
+            我要给小林生孩子！
+          </h6>
+        </a>
+      </div>
+      <div class="sudi">
+        <a href="">
+          <div style="background-image:url(./img/50.png)">
+
+          </div>
+          <p>爸妈来自二次元</p>
+          <h6 class="lei">
+            资深二次元父母X初入宅圈儿女
+          </h6>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div id="gaoxiaobaoman">
+    <div style="padding: 60px 0 20px 0;font-size: 32px;line-height: 45px;">
+      搞笑爆漫
+    </div>
+    <div style="width: 100%;height: 300px;">
+      <div class="gaoxiao">
+        <a href="">
+          <div style="background-image:url(./img/51.png)">
+
+          </div>
+          <p>1031万圣街</p>
+
+          <h6 class="lei">
+            更新至 第582话
+          </h6>
+
+
+        </a>
+      </div>
+      <div class="gaoxiao">
+        <a href="">
+          <div style="background-image:url(./img/53.png)">
+
+          </div>
+          <p>我家大师兄脑子有坑</p>
+
+          <h6 class="lei">
+            更新至 第449坑
+          </h6>
+
+
+        </a>
+      </div>
+      <div class="gaoxiao">
+        <a href="">
+          <div style="background-image:url(./img/54.png)">
+
+          </div>
+          <p>快把我哥带走</p>
+
+          <h6 class="lei">
+            更新至 300 话
+          </h6>
+
+
+        </a>
+      </div>
+      <div class="gaoxiao">
+        <a href="">
+          <div style="background-image:url(./img/55.png)">
+
+          </div>
+          <p>仙王的日常生活</p>
+
+          <h6 class="lei">
+            更新至 160 话
+          </h6>
+
+
+        </a>
+      </div>
+      <div class="gaoxiao">
+        <a href="">
+          <div style="background-image:url(./img/56.png)">
+
+          </div>
+          <p>非人哉</p>
+
+          <h6 class="lei">
+            更新至 753 话
+          </h6>
+
+
+        </a>
+      </div>
+      <div class="gaoxiao">
+        <a href="">
+          <div style="background-image:url(./img/57.png)">
+
+          </div>
+          <p>修真聊天群</p>
+
+          <h6 class="lei">
+            更新至 430 话
+          </h6>
+
+
+        </a>
+      </div>
+    </div>
+  </div>
+  <div id="maoxianchuanshuo"  style="margin-left: 150px">
+    <div style="padding: 60px 0 20px 0;font-size: 32px;line-height: 45px;">
+      冒险传说
+    </div>
+    <div style="width: 100%;height: 300px;">
+      <div class="gaoxiao">
+        <a href="">
+          <div style="background-image:url(./img/58.png)">
+
+          </div>
+          <p>异常生物见闻录</p>
+
+          <h6 class="lei">
+            更新至 178 话
+          </h6>
+
+
+        </a>
+      </div>
+      <div class="gaoxiao">
+        <a href="">
+          <div style="background-image:url(./img/59.png)">
+
+          </div>
+          <p>从前有只小骷髅</p>
+
+          <h6 class="lei">
+            更新至 096 话
+          </h6>
+
+
+        </a>
+      </div>
+      <div class="gaoxiao">
+        <a href="">
+          <div style="background-image:url(./img/60.png)">
+
+          </div>
+          <p>我的后宫全是反派魔女</p>
+
+          <h6 class="lei">
+            更新至 29 话
+          </h6>
+
+
+        </a>
+      </div>
+      <div class="gaoxiao">
+        <a href="">
+          <div style="background-image:url(./img/61.png)">
+
+          </div>
+          <p>驱魔录</p>
+
+          <h6 class="lei">
+            更新至 209 话
+          </h6>
+
+
+        </a>
+      </div>
+      <div class="gaoxiao">
+        <a href="">
+          <div style="background-image:url(./img/62.png)">
+
+          </div>
+          <p>勇者死了！</p>
+
+          <h6 class="lei">
+            [完结] 共 217 话
+          </h6>
+
+
+        </a>
+      </div>
+      <div class="gaoxiao">
+        <a href="">
+          <div style="background-image:url(./img/63.png)">
+
+          </div>
+          <p>寄宿学校的朱丽叶</p>
+
+          <h6 class="lei">
+            [完结] 共 119 话
+          </h6>
+
+
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="bottom">
+  <br>
+
+  <h4>
+    welcome to my world
+  </h4>
+  <h4>
+    This is a cartoon website, here you can see a lot of things about animation, animation is interest and love, I hope everyone can keep this love, you are well, the future looks bright!
+  </h4>
+
+
+</div>
+<div style="background: #02a388;width: 100%;float: left;">
+
+  <h2 style="margin: 0;"><center>© 2021 By Rj_ssl.</center></h2>
+
+
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+  // $("#userinfo_center").click(function (){
+  //   location.href = "userinfo.html"
+  //   // $.ajax({
+  //   //   "url":"/showUserInfo",
+  //   //   "type":"get",
+  //   //   "dataType":"json",
+  //   //   "success":function (json){
+  //   //     if(json.state==1){
+  //   //       location.href = "user/userinfo.html"
+  //   //     }else{
+  //   //       alert(json.message)
+  //   //     }
+  //   //   }
+  //   // })
+  // })
+</script>
+
+</html>

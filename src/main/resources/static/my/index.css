@@ -1,0 +1,49 @@
+/*#web {*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    position: fixed;*/
+/*}*/
+
+/*body {*/
+/*    overflow-x: hidden;*/
+/*    overflow-y: auto;*/
+/*}*/
+/*::-webkit-scrollbar{*/
+/*    display: none;*/
+/*}*/
+
+/*.shell{*/
+/*    width: 250px;*/
+/*    height: 100%;*/
+/*    align-content: center;*/
+/*    background: rgb(50,65,85);*/
+/*}*/
+
+nav .a{
+    float: left;
+    color: #fff;
+    padding: 1em;
+    display: block;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+    margin-top: 10px;
+}
+nav .a:hover{
+    color: #239aff;
+    background-color: rgb(41,44,54);
+}
+
+#main{
+    float: left;
+    margin-left: 260px;
+    margin-top: 70px;
+    width: 82%;
+    border-radius: 5px;
+}
+
+#input-search{
+
+}
+
+

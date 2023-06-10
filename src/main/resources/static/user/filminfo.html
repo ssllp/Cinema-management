@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电影</title>
+    <link rel="stylesheet" href="../css/banner.css">
+    <link rel="stylesheet" href="../css/home内容.css">
+    <link rel="stylesheet" href="../css/bottom.css">
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+<!--    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/film.css">
+    <link rel="stylesheet" href="../css/详情.css">
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color:rgb(255,255,255);
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 70%; /* Could be more or less, depending on screen size */
+            height: 70%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Seat map styles */
+        .seat {
+            display: inline-block;
+            border: 1px solid #ccc;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .seat.selected {
+            background-color: green;
+        }
+        #buyticket{
+            background-color: #81cfff;
+            padding: 10px;
+            margin-top: 20px;
+            float: left;
+            color: white;
+            border-radius: 10%;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="inner">
+        <div id="kuang1">
+            <div id="daohang">
+                <div id="name">
+                    <h1>
+                        <span>A</span>nime
+                        <span>W</span>orld
+                    </h1>
+                </div>
+                <div>
+                    <ul class="k" style="width: 800px">
+                        <li style="width: 90px;">
+                            <a href="film.html"   style="color: tomato;">电影世界</a>
+                        </li>
+                        <li style="width: 90px;">
+                            <a href="../index.html">网站首页</a>
+                        </li>
+
+                        <li style="width: 90px;">
+                            <a href="../admin/index.html">后台管理</a>
+                        </li><li style="width: 90px;">
+                        <a href="userinfo.html" >个人中心</a>
+                    </li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<main style="height:800px;">
+    <div id="main-left" style="height: 800px;">
+        <div id="left1">
+            <div style="width: 200px;height: 250px;background-size:cover;float: left;" id="tp">
+
+            </div>
+            <div id="xxi">
+                <h1 id="film-name">
+
+                </h1>
+
+                <p>类型：<span id="lei"></span></p>
+                <p>地区：<span id="di"></span></p>
+                <p>题材：<span id="ticai"></span></p>
+                <p>上映时间：<span id="shang"></span></p>
+                <p>人气：<span id="ping"></span></p>
+                <button id="buyticket">买票</button>
+                <div id="seatSelectionModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeSeatSelectionModal()">&times;</span>
+                        <div style="width: 35%;height: 100%;float: right;background-color: rgb(255,204,102)">
+                            <div style="float: left;">
+                                <img id="ticket-back" style="width: 40%;float: left;margin-top: 10px;margin-left: 10px;" alt="">
+                                <div style="float:left;margin-left: 5px;width: 50%" id="ticket-info">
+
+                                </div>
+                            </div>
+                            <hr>
+                            <b style="color: black;float: left;margin-left: 10px;font-size: 16px">订单信息</b>
+                            <div style="float: left;width: 80%;margin-left: 10px">
+                                <form id="form-sch" style="float: left;margin-top: 20px;">
+                                    <b style="color: black;float: left;font-size: 14px;padding-bottom: 10px;">场次</b>
+<!--                                    <input type="text" name="film_id" style="display: none">-->
+                                    <select name="schedule_id" id="age">
+                                        <option selected disabled="disabled" label=" --请选择场次--">
+
+                                        </option >
+
+                                    </select>
+                                    <input type="button" id="btn-sch" value="提交">
+                                </form>
+                                <b style="color: black;float: left;font-size: 14px;padding-bottom: 10px;margin-top: 10px;width: 100%;">座位</b>
+                                <form id="form-buy" style="float: left;">
+                                    <input type="text" name="filmname" style="display: none;" id="inputfilmname">
+                                    <input type="text" name="schedule_id" style="display: none;" id="inputschedule_id">
+                                    <input type="text" name="seat" readonly="readonly" id="zuowei">
+                                    <input type="button" value="购买" id="buy">
+                                </form>
+                            </div>
+                        </div>
+                        <div style="width: 63%;height: 100%;float: left;background-color: #f1fcff73">
+                            <div style="width: 100%;margin: 0 auto;height: 9%;display: block">
+                                <div style="width: 25%;float: left;margin-left: 100px">
+                                    <img src="../img/可选座位.png" alt="" style="height: 40px">
+                                    <b>可选座位</b>
+                                </div>
+                                <div style="width: 25%;float: left;margin-left: 5px;">
+                                    <img src="../img/已售座位.png" alt="" style="height: 40px">
+                                    <b>已售座位</b>
+                                </div>
+                                <div style="width: 25%;float:left;margin-left: 5px">
+                                    <img src="../img/已选座位.png" alt="" style="height: 40px">
+                                    <b>已选座位</b>
+                                </div>
+                            </div>
+                            <hr>
+                            <div style="width: 60%;float:left;margin-top: 10px;margin-left: 50px;border-style: solid;">
+                                <h3 style="color: black;font-size: 26px;margin-top: 10px;margin-bottom: 10px;">放映布</h3>
+                            </div>
+                            <div id="seat" style="width: 50%;float: left;margin-left: 100px;margin-top: 30px;">
+                                <div id="seatmap">
+                                </div>
+                                <h1 style="color: black;margin-top: 50px;font-size: 40px;margin-left: 5px" id="tishi">请在右边先选场次</h1>
+                            </div>
+                            <script>
+                                var flag=0
+                                function seatcheck(i,j) {
+                                    var a=i+1;
+                                    var b=j+1;
+                                    var pp=document.getElementById(i+'+'+j);
+                                    var zuowei=document.getElementById("zuowei");
+                                    if (flag==0){
+                                        pp.src="../img/已选座位.png";
+                                        zuowei.value=a+"排"+b+"座";
+                                        flag=1;
+                                    }else {
+                                        pp.src="../img/可选座位.png";
+                                        zuowei.value="";
+                                        flag=0;
+                                    }
+
+                                }
+                            </script>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="left2">
+            <p>相关评论</p>
+            <hr>
+            <div id="pinglun">
+
+            </div>
+
+            <div style="display: flex">
+                <img id="user-img" style="width: 100px;height: 100px;border-radius: 50%;float: left;" alt="">
+                <div style="float: left;margin-left: 20px;">
+                    <b id="user-name"></b>
+                    <hr>
+                    <form id="form-eva">
+                        <input type="text" placeholder="留下你的评论吧！" name="text">
+                        <input type="text" name="film_id" id="film" style="display:none;">
+                        <input type="button" id="btn-eva" value="发表评论">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="left3">
+            <p>电影推荐</p>
+            <div style="width: 130px;height: 210px;border: 1px solid black;">
+                <a href="" style="width: 130px;height: 210px;font-size: 10px;color: brown;"><div style="background: url(../img/film/38.png);background-size: cover;height: 190px;"></div><p style="margin:5px 40px;">再世妖王</p></a>
+            </div>
+            <div style="width: 130px;height: 210px;margin-left: 10px;border: 1px solid black;">
+                <a href="" style="width: 130px;height: 210px;font-size: 10px;color: brown;"><div style="background: url(../img/film/39.png);background-size: cover;height: 190px;"></div><p style="margin:5px 40px;">许愿神龙</p></a>
+            </div>
+            <div style="width: 130px;height: 210px;margin-left: 10px;border: 1px solid black;">
+                <a href="" style="width: 130px;height: 210px;font-size: 10px;color: brown;"><div style="background: url(../img/film/40.png);background-size: cover;height: 190px;"></div><p style="margin:5px 40px;">猫和老鼠</p></a>
+            </div>
+            <div style="width: 130px;height: 210px;margin-left: 10px;border: 1px solid black;">
+                <a href="" style="width: 130px;height: 210px;font-size: 10px;color: brown;"><div style="background: url(../img/film/42.png);background-size: cover;height: 190px;"></div><p style="margin:5px 40px;">你好世界</p></a>
+            </div>
+            <div style="width: 130px;height: 210px;margin-left: 10px;border: 1px solid black;">
+                <a href="" style="width: 130px;height: 210px;font-size: 10px;color: brown;"><div style="background: url(../img/film/43.png);background-size: cover;height: 190px;"></div><p style="margin:5px 40px;">恐龙日记</p></a>
+            </div>
+            <div style="width: 130px;height: 210px;margin-left: 10px;border: 1px solid black;">
+                <a href="" style="width: 130px;height: 210px;font-size: 10px;color: brown;"><div style="background: url(../img/film/46.png);background-size: cover;height: 190px;"></div><p style="margin:5px 40px;">冰雪奇缘2</p></a>
+            </div>
+        </div>
+    </div>
+
+</main>
+<script>
+    $(document).ready(function () {
+        Date.prototype.format = function(fmt) {
+            var o = {
+                "M+" : this.getMonth()+1,                 //月份
+                "d+" : this.getDate(),                    //日
+                "h+" : this.getHours(),                   //小时
+                "m+" : this.getMinutes(),                 //分
+                "s+" : this.getSeconds(),                 //秒
+                "q+" : Math.floor((this.getMonth()+3)/3), //季度
+                "S"  : this.getMilliseconds()             //毫秒
+            };
+            if(/(y+)/.test(fmt)) {
+                fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+            }
+            for(var k in o) {
+                if(new RegExp("("+ k +")").test(fmt)){
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+                }
+            }
+            return fmt;
+        }
+        var reg1 = new RegExp("(^|&)" + "film_id" + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r1 = window.location.search.substr(1).match(reg1); //匹配目标参数
+        var film_id;
+        if (r1 != null) {
+            film_id=decodeURI(r1[2]);
+        }else {
+            film_id="nothing";
+        }
+        $.ajax({
+            "url":"/user/showFilmInfo",
+            "data":{"film_id":film_id},
+            "type":"post",
+            "dataType":"json",
+            "success":function (result) {
+                document.getElementById("inputfilmname").value=result.film.filmname
+                var oldtime=(new Date(result.film.filmdate)).getTime();
+                var newtime=new Date(oldtime).format("yyyy-MM-dd hh:mm:ss")
+                document.getElementById("tp").style.backgroundImage="url(../img/film/"+result.film.back+")"
+                document.getElementById("film-name").innerText=result.film.filmname
+                document.getElementById("lei").innerText=result.film.filmtype
+                document.getElementById("di").innerText=result.film.area
+                document.getElementById("ticai").innerText=result.film.ticai
+                document.getElementById("shang").innerText=newtime
+                document.getElementById("ping").innerText=result.film.sentiment
+                document.getElementById("user-img").src="/upload/"+result.userinfo.picture
+                document.getElementById("user-name").innerText=result.userinfo.username
+                document.getElementById("film").value=film_id
+                for(i=0;i<result.evaluationList.length;i++){
+                    var oldtime2=(new Date(result.evaluationList[i].evaluatedate)).getTime();
+                    var newtime2=new Date(oldtime2).format("yyyy-MM-dd hh:mm:ss")
+                    document.getElementById("pinglun").innerHTML+="<div style=\"display: flex\">\n" +
+                        "                    <img src='/upload/"+result.evaluationList[i].picture+"' style=\"width: 100px;height: 100px;border-radius: 50%;float: left;\" alt=\"\">\n" +
+                        "                    <div style=\"float: left;margin-left: 20px;\">\n" +
+                        "                        <b>"+result.evaluationList[i].username+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+newtime2+"</b>\n" +
+                        "                        <hr>\n" +
+                        "                        <p>"+result.evaluationList[i].text+"</p>\n" +
+                        "                    </div>\n" +
+                        "                </div>\n" +
+                        "                <hr>"
+                }
+                document.getElementById("ticket-info").innerHTML="<h2 style=\"float: left;color: black;padding: 0\">"+result.film.filmname+"</h2>\n" +
+                    "                                    <br>\n" +
+                    "                                    <b style=\"float: left;width: 100%\">票价："+result.film.fare+"</b>\n" +
+                    "                                    <b style=\"float: left;width: 100%;margin-top: 20px;\">地区："+result.film.area+"</b>\n" +
+                    "                                    <b style=\"float: left;width: 100%;margin-top: 20px;\">人气："+result.film.sentiment+"</b>"
+                document.getElementById("ticket-back").src="../img/film/"+result.film.back
+
+                for (j=0;j<result.scheduleList.length;j++){
+                    var oldtime1=(new Date(result.scheduleList[j].starttime)).getTime();
+                    var newtime1=new Date(oldtime1).format("yyyy-MM-dd hh:mm:ss")
+                    document.getElementById("age").innerHTML+="<option value='"+result.scheduleList[j].schedule_id+"'>"+newtime1+"&nbsp;&nbsp;"+result.scheduleList[j].cinemaname+result.scheduleList[j].hallname+"</option>"
+                }
+
+            }
+        })
+        $("#btn-sch").click(function () {
+            document.getElementById("inputschedule_id").value=document.getElementById("age").value
+            $.ajax({
+                "url":"/showseat",
+                "data":$("#form-sch").serialize(),
+                "type":"post",
+                "dataType":"json",
+                "success":function (result) {
+                        document.getElementById("tishi").style.display="none"
+
+                        var arr = new Array();
+                        for(var m=0;m<6;m++){        //一维长度为5
+                            arr[m] = new Array();
+                            for(var n=0;n<6;n++){    //二维长度为5
+                                arr[m][n] = 0;
+                            }
+                        }
+                        var x;
+                        var y;
+                        for (p=0;p<result.length;p++){
+                            x=result[p].seat.substring(0,1)-1;
+                            y=result[p].seat.substring(2,3)-1;
+                            arr[x][y]=1
+                            console.log(arr)
+                        }
+                       document.getElementById("seatmap").innerHTML=" "
+                        for (i=0;i<6;i++){
+                            document.getElementById("seatmap").innerHTML+="</br>"
+                            for (j=0;j<6;j++){
+                                if (arr[i][j]==0){
+                                    document.getElementById("seatmap").innerHTML+="<img  id='"+i+"+"+j+"' src=\"../img/可选座位.png\"  style=\"height: 45px\" onclick=\"seatcheck("+i+","+j+")\">"
+                                }
+                                if (arr[i][j]==1){
+                                    document.getElementById("seatmap").innerHTML+="<img  src=\"../img/已售座位.png\"  style=\"height: 45px\">"
+                                }
+                            }
+                        }
+
+
+
+
+
+                }
+            })
+        })
+        $("#buy").click(function () {
+            $.ajax({
+                "url":"/addorder",
+                "data":$("#form-buy").serialize(),
+                "type":"post",
+                "dataType":"json",
+                "success":function (json) {
+                    if (json.state==1){
+                        alert("购票成功！")
+                        location.href="filminfo.html?film_id="+film_id
+                    }
+                }
+            })
+        })
+        $("#btn-eva").click(function () {
+            $.ajax({
+                "url":"/user/addEva",
+                "data":$("#form-eva").serialize(),
+                "type":"post",
+                "dataType":"json",
+                "success":function (json) {
+                    if (json.state==1){
+                        alert("评论成功")
+                        location.href="filminfo.html?film_id="+film_id
+                    }
+                }
+            })
+        })
+        $("#buyticket").click(function () {
+            document.getElementById("seatSelectionModal").style.display = "block";
+        })
+
+    })
+
+    function closeSeatSelectionModal() {
+        document.getElementById("seatSelectionModal").style.display = "none";
+    }
+
+</script>
+<script>
+    var a_idx = 0;jQuery(document).ready(function($) {$("body").click(function(e) {var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正" ,"法治", "爱国", "敬业", "诚信", "友善");var $i = $("<span/>").text(a[a_idx]);
+        a_idx = (a_idx + 1) % a.length;var x = e.pageX,y = e.pageY;$i.css({"z-index": 100000000,"top": y - 20,"left": x,"position": "absolute","font-weight": "bold","color": "#ff6651"});$("body").append($i);$i.animate({"top": y - 180,"opacity": 0},1500,function() {$i.remove();});});});
+</script>
+
+</body>
+</html>

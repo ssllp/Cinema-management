@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="../bootstrap3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/banner.css">
+    <link rel="stylesheet" href="../css/home内容.css">
+    <link rel="stylesheet" href="../css/bottom.css">
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+<!--    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="../my/index.css">
+    <link rel="stylesheet" href="../css/film.css">
+    <link rel="stylesheet" href="../css/详情.css">
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        #page-ul li{
+            margin: 0;
+            width: 30px;
+        }
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Seat map styles */
+        .seat {
+            display: inline-block;
+            border: 1px solid #ccc;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .seat.selected {
+            background-color: green;
+        }
+        nav .a{
+            padding: 0;
+            background-color: rgb(51,55,68);
+            border:0;
+        }
+    </style>
+</head>
+<body style="height: 100%">
+<div>
+    <div class="inner">
+        <div id="kuang1">
+            <div id="daohang">
+                <div id="name">
+                    <h1>
+                        <span>A</span>nime
+                        <span>W</span>orld
+                    </h1>
+                </div>
+                <div>
+                    <ul class="k" style="width: 800px">
+                        <li style="width: 90px;">
+                            <a href="film.html">电影世界</a>
+                        </li>
+                        <li style="width: 90px;">
+                            <a href="../index.html">网站首页</a>
+                        </li>
+
+                        <li style="width: 90px;">
+                            <a href="../admin/index.html">后台管理</a>
+                        </li><li style="width: 90px;">
+                        <a href="userinfo.html"   style="color: tomato;">个人中心</a>
+                    </li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div style="width: 100%;height: 200px;background-image: linear-gradient(to bottom, rgb(55,61,65) 0%, rgb(55,61,65) 100%);">
+    <div style="width: 70%;margin: 0 auto;height: 100%;" id="showuserinfo">
+
+    </div>
+</div>
+<main style="width: 70%;float: right;margin-right: 200px;padding-bottom: 100px;">
+    <aside style="width: 140px;height: 300px;background: rgb(51,55,68);margin-top: 50px;float: left;margin-left: 20px;">
+        <nav style="width: 140px;height: 100%;float: left;margin-top: 30px;">
+            <button id="grxx" class="a"><i class="fa fa-user fa-fw"></i>&nbsp;个人信息</button>
+            <button id="xgmm" class="a"><i class="fa fa-check-square-o fa-fw"></i>&nbsp;修改密码</button>
+            <button id="wddd" class="a"><i class="fa fa-bell fa-fw"></i>&nbsp;我的订单</button>
+
+
+        </nav>
+    </aside>
+    <div style="width: 70%;float:left;margin-left: 20px;background: rgb(140 140 174 / 19%);padding-bottom: 20px">
+        <div  id="div-grxx" style="margin-left: 20px;margin-top: 20px;float: left;">
+            <b><i class="fa fa-user fa-fw"></i>个人信息</b>
+            <hr>
+            <form id="form-updateuserinfo">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">用户名</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="用户名" name="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail">邮箱</label>
+                    <input type="text" class="form-control" id="exampleInputEmail" placeholder="邮箱"  name="email">
+                </div>
+                <div class="form-group">
+                    <label for="sex">性别</label>
+                    <input type="text" class="form-control" id="sex" placeholder="性别"  name="sex">
+                </div>
+                <div class="form-group">
+                    <label for="gex">个性签名</label>
+                    <input type="text" class="form-control" id="gex" placeholder="个性签名"  name="signature">
+                </div>
+                <input type="text" name="photo" id="inputphoto" style="display: none">
+                <input type="button" class="btn btn-default" id="btn-updateuserinfo" value="Submit">
+            </form>
+            <form id="change_photo">
+                <div class="form-group">
+                    <label for="exampleInputFile">修改头像</label>
+                    <input type="file" id="exampleInputFile" name="file" class="form-control">
+                    <!--                        <p class="help-block">Example block-level help text here.</p>-->
+                    <input type="button" id="change_photo_btn" class="btn btn-default" value="修改头像">
+                </div>
+            </form>
+        </div>
+        <div style="margin-left: 20px;margin-top: 20px;float: left;width: 70%;padding-bottom: 100px;display: none;" id="div-xgmm">
+            <b><i class="fa fa-check-square-o fa-fw"></i>修改密码</b>
+            <hr>
+            <form id="form-update">
+                <div class="form-group">
+                    <label for="user">用户名</label>
+                    <input type="text" class="form-control" id="user" placeholder="用户名"  name="username">
+                </div>
+                <div class="form-group">
+                    <label for="old_password">旧密码</label>
+                    <input type="password" class="form-control" id="old_password" placeholder="旧密码"  name="old_password">
+                </div>
+                <div class="form-group">
+                    <label for="password">新密码</label>
+                    <input type="password" class="form-control" id="password" placeholder="新密码"  name="new_password">
+                </div>
+                <input type="button" class="btn btn-default" value="Submit" id="btn-update">
+            </form>
+        </div>
+        <div style="margin-left: 20px;margin-top: 20px;float: left;width: 90%;padding-bottom: 100px;display: none" id="div-wddd">
+            <b><i class="fa fa-bell fa-fw"></i>订单管理</b>
+            <table class="table table-striped table-bordered" style="margin-left: 10px;color: #555551;margin-top: 15px;width: 98%" id="showorder">
+                <tr>
+                    <td><b>电影名</b></td>
+                    <td><b>电影院名称</b></td>
+                    <td><b>放映厅名称</b></td>
+                    <td><b>座位</b></td>
+                    <td><b>状态</b></td>
+                    <td><b>下单时间</b></td>
+                    <td><b>操作</b></td>
+                </tr>
+
+
+            </table>
+            <script>
+                function tuipiao(cz) {
+                    if(confirm('确定要退票吗')){
+                        $.ajax({
+                            "url":"/tuipiao",
+                            "type":"post",
+                            "data":{"order_id":cz},
+                            "dataType":"json",
+                            "success":function (json) {
+                                if (json.state==1){
+                                    alert("退票成功！")
+                                    location.href="userinfo.html"
+                                }
+                            }
+                        })
+                    }
+                }
+            </script>
+            <nav aria-label="Page navigation">
+                <b style="float: left;margin-left: 20px;margin-top: 6px;" id="sum">共&nbsp;&nbsp;条数据</b>
+                <ul class="pagination" style="margin-top: 0;margin-left: 20px" id="page-ul">
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</main>
+</body>
+
+<script>
+    $(document).ready(function () {
+        Date.prototype.format = function(fmt) {
+            var o = {
+                "M+" : this.getMonth()+1,                 //月份
+                "d+" : this.getDate(),                    //日
+                "h+" : this.getHours(),                   //小时
+                "m+" : this.getMinutes(),                 //分
+                "s+" : this.getSeconds(),                 //秒
+                "q+" : Math.floor((this.getMonth()+3)/3), //季度
+                "S"  : this.getMilliseconds()             //毫秒
+            };
+            if(/(y+)/.test(fmt)) {
+                fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+            }
+            for(var k in o) {
+                if(new RegExp("("+ k +")").test(fmt)){
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+                }
+            }
+            return fmt;
+        }
+        var reg = new RegExp("(^|&)" + "page" + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        var page;
+        if (r != null) {
+            page=decodeURI(r[2]);
+        }else {
+            page=1;
+        }
+        $.ajax({
+            "url":"/user/showuserinfo",
+            "data":{"page":page},
+            "type":"post",
+            "dataType":"json",
+            "success":function (result) {
+                var nextpage=parseInt(page-(-1));
+                var prepage=parseInt(page-1);
+                document.getElementById("sum").innerHTML="共&nbsp;"+result.orderList.total+"&nbsp;条数据"
+                document.getElementById("page-ul").innerHTML+="<li>\n" +
+                    "                <a href='userinfo.html?page="+prepage+"' aria-label=\"Previous\">\n" +
+                    "                    <span aria-hidden=\"true\">&laquo;</span>\n" +
+                    "                </a>\n" +
+                    "            </li>"
+                for (j=1;j<=result.orderList.pages;j++){
+                    document.getElementById("page-ul").innerHTML+="<li><a href='userinfo.html?page="+j+"'>"+j+"</a></li>"
+                }
+                document.getElementById("page-ul").innerHTML+="<li>\n" +
+                    "                <a href='userinfo.html?page="+nextpage+"' aria-label=\"Next\">\n" +
+                    "                    <span aria-hidden=\"true\">&raquo;</span>\n" +
+                    "                </a>\n" +
+                    "            </li>"
+                document.getElementById("showuserinfo").innerHTML="<img src='/upload/"+result.userinfo.picture+"' style=\"border-radius: 50%;float: left;border: 2px;width: 18%;height: 97%;\">\n" +
+                    "        <b style=\"margin-top: 35px;float:left;font-size: 26px;color: white;margin-left: 20px;width: 80%\">你好，"+result.userinfo.username+"，祝你每天快乐健康</b>\n" +
+                    "        <p style=\"float: left;margin:10px 0px 0px 20px;color: white;width: 70%;\">个性签名："+result.userinfo.signature+"</p>\n" +
+                    "        <p style=\"float: left;margin:10px 0px 0px 20px;color: white;width: 70%;\">邮箱："+result.userinfo.email+"</p>\n" +
+                    "        <p style=\"float: left;margin:10px 0px 0px 20px;color: white;width: 70%;\">性别："+result.userinfo.sex+"</p>"
+                document.getElementById("user").value=result.userinfo.username
+                $("#exampleInputEmail1").val(result.userinfo.username)
+                $("#exampleInputEmail").val(result.userinfo.email)
+                $("#sex").val(result.userinfo.sex)
+                $("#gex").val(result.userinfo.signature)
+                $("#inputphoto").val(result.userinfo.picture)
+                for (i=0;i<result.orderList.list.length;i++){
+                    var oldtime=(new Date(result.orderList.list[i].ordertime)).getTime();
+                    var newtime=new Date(oldtime).format("yyyy-MM-dd hh:mm:ss")
+                    document.getElementById("showorder").innerHTML+="<tr>\n" +
+                        "                    <td>"+result.orderList.list[i].filmname+"</td>\n" +
+                        "                    <td>"+result.orderList.list[i].cinemaname+"</td>\n" +
+                        "                    <td>"+result.orderList.list[i].hallname+"</td>\n" +
+                        "                    <td>"+result.orderList.list[i].seat+"</td>\n" +
+                        "                    <td>"+result.orderList.list[i].status+"</td>\n" +
+                        "                    <td>"+newtime+"</td>\n" +
+                        "                    <td><button onclick=\"tuipiao('"+result.orderList.list[i].order_id+"')\">退票</button></td>\n" +
+                        "                </tr>"
+                }
+            }
+        })
+    })
+    $("#btn-update").click(function () {
+        $.ajax({
+            "url":"/changeUserPwd",
+            "data":$("#form-update").serialize(),
+            "type":"post",
+            "dataType":"json",
+            "success":function (json) {
+                if (json.state==1){
+                    alert("修改成功！")
+                    location.href="userinfo.html"
+                }else {
+                    alert(json.message)
+                }
+
+            }
+        })
+    })
+    $("#btn-updateuserinfo").click(function () {
+        $.ajax({
+            "url":"/user/updateUserInfo",
+            "data":$("#form-updateuserinfo").serialize(),
+            "type":"post",
+            "dataType":"json",
+            "success":function (json) {
+                if (json.state==1){
+                    alert("修改成功！")
+                    location.href="userinfo.html"
+                }else {
+                    alert(json.message)
+                }
+
+            }
+        })
+    })
+    $("#xgmm").click(function () {
+        document.getElementById("div-xgmm").style.display="block"
+        document.getElementById("div-grxx").style.display="none"
+        document.getElementById("div-wddd").style.display="none"
+
+    })
+    $("#wddd").click(function () {
+        document.getElementById("div-xgmm").style.display="none"
+        document.getElementById("div-grxx").style.display="none"
+        document.getElementById("div-wddd").style.display="block"
+
+    })
+    $("#grxx").click(function () {
+        document.getElementById("div-xgmm").style.display="none"
+        document.getElementById("div-grxx").style.display="block"
+        document.getElementById("div-wddd").style.display="none"
+
+    })
+    $("#change_photo_btn").click(function (){
+        $.ajax({
+            "url":"/changeUserPhoto",
+            "type":"post",
+            "data":new FormData($("#change_photo")[0]),
+            //如果不关闭该属性，默认会将图片转换成字符串数据json格式
+            "contentType":false,
+            //如果不关闭该属性，不关闭可能会造成文件损坏
+            "processData":false,
+            "dataType":"json",
+            "success":function (json){
+                if(json.state==1){
+                    alert("上传成功")
+                    location.href = "userinfo.html"
+                }else{
+                    alert(json.message)
+                }
+            }
+        })
+    })
+</script>
+</html>

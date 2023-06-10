@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理主页</title>
+    <link rel="stylesheet" href="../bootstrap3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/tanchuangcss.css">
+    <link rel="stylesheet" href="../bootstrap3.3.7/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+    <style>
+        .glk{
+            width: 40%;
+            height: 40%;
+            float: left;
+            background-size: cover;
+            box-shadow: -10px 10px 20px #d1d3d8;
+            border-radius: 20px;
+            transition:2s;
+            -webkit-transition:1s;
+            z-index: 1;
+            position: absolute;
+        }
+        .glk:hover{
+            width: 43%;
+            height: 43%;
+            z-index: 22;
+        }
+        .fa{
+            margin-right: 10px;
+        }
+        .jieshao{
+            width: 21%;
+            height: 85px;
+            background-color: white;
+            border-radius: 2%;
+            float: left;
+            margin-left: 20px;
+        }
+        .jieshao h3{
+            margin: 0 auto;
+            width: 40%;
+            color: rgb(153,153,153);
+            font-size: 26px;
+            font-weight: 700;
+        }
+        .jieshao b{
+            margin-top: 5px;
+            margin-left: 3px;
+        }
+        nav .a{
+            float: left;
+            color: #fff;
+            padding: 1em;
+            display: block;
+            text-align: center;
+            width: 100%;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        nav .a:hover{
+            color: #239aff;
+            background-color: rgb(41,44,54);
+        }
+
+        #main{
+            float: left;
+            margin-left: 260px;
+            margin-top: 70px;
+            width: 82%;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body style="background-color: rgb(234,237,241);">
+<div id="web">
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-image: linear-gradient(to bottom, rgb(55,61,65) 0%, rgb(55,61,65) 100%);border: 0">
+        <div class="container navbar-default" style="background-image: linear-gradient(to bottom, rgb(55,61,65) 0%, rgb(55,61,65) 100%);margin-left: 0px">
+            <nav class="navbar" style="display: contents">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#" style="color: white">影院管理系统</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="${pageContext.request.contextPath}/admin/filmlist" style="color: white">影片管理</a></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/userlist" style="color: white">用户管理</a></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/orderlist" style="color: white">订单管理</a></li>
+                        </ul>
+                        <form class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="输入并搜索">
+                            </div>
+                            <button type="submit" class="btn btn-default">搜索</button>
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown">
+
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white;background-image: linear-gradient(to bottom, #191818 0%, #832f6b 100%);">admin<span class="caret"></span></a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a href="${pageContext.request.contextPath}">网站首页</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="${pageContext.request.contextPath}/admin/logout">退出登录</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+    </nav>
+
+    <%--    侧边导航栏--%>
+    <aside style="width: 240px;height: 100%;float: left;background: rgb(51,55,68);position: fixed;margin-top: 20px">
+        <nav style="width: 240px;height: 100%;float: left;margin-top: 30px;">
+            <a href="index.html" class="a" style="color: #239aff;background-color: rgb(41,44,54);"><i class="fa fa-bar-chart fa-fw"></i>&nbsp;数据显示</a>
+            <a href="userlist.html" class="a"><i class="fa fa-user fa-fw"></i>&nbsp;用户管理</a>
+            <a href="filmlist.html" class="a"><i class="fa fa-video-camera fa-fw"></i>&nbsp;电影管理</a>
+            <a href="cinemalist.html" class="a"><i class="fa fa-university fa-fw"></i>&nbsp;影院管理</a>
+            <a href="halllist.html" class="a"><i class="fa fa-television fa-fw"></i>&nbsp;影厅管理</a>
+            <a href="schedulelist.html" class="a"><i class="fa fa-th-list fa-fw"></i>&nbsp;电影排片</a>
+            <a href="evalist.html" class="a"><i class="fa fa-twitch fa-fw"></i>&nbsp;评论管理</a>
+            <a href="orderlist.html" class="a"><i class="fa fa-credit-card-alt fa-fw"></i>&nbsp;订单管理</a>
+
+        </nav>
+    </aside>
+
+</div>
+<script src="../js/jquery2.2.2.min.js"></script>
+<script src="../bootstrap3.3.7/js/bootstrap.js"></script>
+<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<div id="main" style="position: absolute;height: 90%;">
+    <div class="jieshao">
+        <div style="margin: 0 auto;width: 25%;margin-top: 17px;">
+            <h3 id="usercount"></h3>
+            <b>用户总数</b>
+        </div>
+    </div>
+    <div class="jieshao">
+        <div style="margin: 0 auto;width: 25%;margin-top: 17px;">
+            <h3 id="filmcount"></h3>
+            <b>电影总数</b>
+        </div>
+    </div>
+    <div class="jieshao">
+        <div style="margin: 0 auto;width: 25%;margin-top: 17px;">
+            <h3 id="cinemacount"></h3>
+            <b>影院总数</b>
+        </div>
+    </div>
+    <div class="jieshao">
+        <div style="margin: 0 auto;width: 25%;margin-top: 17px;">
+            <h3 id="ordercount"></h3>
+            <b>订单总数</b>
+        </div>
+    </div>
+    <div style="width: 85%;float:left;margin-top: 20px;margin-left: 20px;height: 68%;">
+        <b style="width: 100%;float: left;height: 20px">
+            热门电影排行
+        </b>
+        <div style="float: left;width: 100%;height: 100%;background-color: white;margin-top: 10px;border-radius: 2%" id="topfilm">
+
+
+        </div>
+    </div>
+
+</div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+                "url":"/admin/showInfo",
+                "type":"post",
+                "dataType":"json",
+                "success":function(result){
+                    document.getElementById("usercount").innerText=result.userCount
+                    document.getElementById("filmcount").innerText=result.filmCount
+                    document.getElementById("cinemacount").innerText=result.cinemaCount
+                    document.getElementById("ordercount").innerText=result.orderCount
+                    var myChart = echarts.init(document.getElementById('topfilm'));
+
+                    // 指定图表的配置项和数据
+                    var option = {
+                        title: {
+                            text: '热门电影速递'
+                        },
+                        tooltip: {},
+                        legend: {
+                            data:['人气票房','票价'],
+                            selected:{
+                                "票价":false
+                            }
+                        },
+                        xAxis: {
+                            data: [result.filmList[0].filmname,result.filmList[1].filmname,result.filmList[2].filmname,result.filmList[3].filmname,result.filmList[4].filmname,result.filmList[5].filmname]
+
+                        },
+                        yAxis: {default:true},
+                        series: [{
+                            name: '人气票房',
+                            type: 'bar',
+                            data: [result.filmList[0].sentiment, result.filmList[1].sentiment, result.filmList[2].sentiment, result.filmList[3].sentiment, result.filmList[4].sentiment, result.filmList[5].sentiment],
+                            itemStyle: {
+                                normal: {
+                                    //这里是重点
+                                    color: function(params) {
+                                        //注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
+                                        var colorList = ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83', '#ca8622'];
+                                        return colorList[params.dataIndex]
+                                    }
+                                }
+                            }
+                        },
+                    {
+                        name:'票价',
+                            type: 'bar',
+                        data:  [result.filmList[0].fare, result.filmList[1].fare, result.filmList[2].fare, result.filmList[3].fare,result.filmList[4].fare,result.filmList[5].fare],
+                        itemStyle: {
+                            normal: {
+                                //这里是重点
+                                color: function(params) {
+                                    //注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
+                                    var colorList = ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83', '#ca8622'];
+                                    return colorList[params.dataIndex]
+                                }
+                            }
+                        }
+
+                    }
+                ]
+                };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                }
+            })
+        })
+    </script>
+
+
+</body>
+
+</html>

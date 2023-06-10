@@ -1,0 +1,250 @@
+#comic{
+    width: 100%;
+    
+}
+#comic .dy{
+    width: 194px;
+    margin-top: 10px;
+}
+#fenlei{
+    padding: 16px 0;
+    background: black;
+    width: 100%;
+    height: 73px;
+    margin: 0;
+}
+#fenlei h5{
+    width: 0;
+    animation: mm 5s linear;
+    animation-fill-mode: forwards;
+}
+@keyframes mm{
+    0%{
+        width: 500px;
+    }
+    100%{
+        width: 1000px;
+    }
+}
+#slide{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 380px;
+    position: relative;
+    background: wheat;
+    overflow: hidden;
+    
+}
+#slide ul{
+    width: calc(760px * 10);
+    margin: 0;
+    padding: 0;
+    animation: lb 40s linear infinite;
+    margin-left: -380px ;
+}
+#slide li{
+    margin: 0;
+    padding: 0;
+    width: 760px;
+    height: 380px;  
+}
+
+#slide li:nth-child(1){
+    
+    
+    background: url(../img/67.png);
+}
+#slide li:nth-child(2){
+    
+    background: url(../img/68.png);
+}
+#slide li:nth-child(3){
+    
+    background: url(../img/69.png);
+}
+#slide li:nth-child(4){
+    
+    background: url(../img/70.png);
+}
+#slide li:nth-child(5){
+    
+    background: url(../img/71.png);
+}
+#slide li:nth-child(6){
+    background: url(../img/67.png);
+}
+#slide li:nth-child(7){
+    
+    background: url(../img/68.png);
+}
+#slide li:nth-child(8){
+    
+    background: url(../img/69.png);
+}
+#yinying{
+    width: 25%;
+    top: 106px;
+    position: absolute;
+    background-image: linear-gradient(90deg,rgba(0,0,0,.8),rgba(43,43,43,0));
+    height: 380px;
+    left: 0;
+}
+#yinying2{
+    width: 25%;
+    top: 106px;
+    position: absolute;
+    height: 380px;
+    right: 0;
+    transform: scaleX(-1);
+    background-image: linear-gradient(90deg,rgba(0,0,0,.8),rgba(43,43,43,0));
+}
+.odiv_nav{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -100px;
+    z-index: 2;
+}
+.span_list{
+    width: 20px;
+    height: 20px;
+    border: 3px solid white;
+    border-radius:50%;
+    float: left;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.left_click{
+    position: absolute;
+    width: 80px;
+    height: 400px;
+    font-size:4em;
+    color: white;
+    text-align: center;
+    line-height: 400px;
+    cursor: pointer;
+    z-index:10000; 
+} 
+.right_click{ position: absolute;
+    right: 0px;
+    width: 80px;
+    height: 400px;
+    font-size:4em;
+    color: white;
+    text-align: center;
+    line-height: 400px;
+    cursor: pointer;
+    z-index:10000;
+}
+#weinituijian{
+    width: 80%;
+    margin: 0 auto;
+    height: 800px;
+}
+div.tuijian{
+    width: 180px;
+    padding: 0 5px 24px;
+    height: 302px;
+    float: left;
+    margin-left: 10px;
+}
+.tuijian a{
+    width: 180px;
+    height: 300px;
+}
+.tuijian a div{
+    width: 100%;
+    padding-top: 133.3%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 2px;
+}
+.tuijian p{
+    margin: 10px 0;
+    padding: 0;
+    color: black;
+    font-size: 18px;
+    
+}
+.lei{
+    font-size: 13px;
+    line-height: 18px;
+    color: #999;
+    padding: 2px 0;
+    margin: 0;
+    overflow: hidden;
+    height: 17px;
+}
+#remensudi{
+    width: 80%;
+    margin: 0 auto;
+    height: 600px;
+}
+div.sudi{
+    width: 278px;
+    padding: 0 5px 24px;
+    height: 217px;
+    float: left;
+    margin-left: 10px;
+}
+.sudi a{
+    width: 278px;
+    height: 217px;
+    
+}
+.sudi a div{
+    width: 100%;
+    padding-top: 56%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 2px;
+}
+.sudi p{
+    margin: 10px 0;
+    padding: 0;
+    color: black;
+    font-size: 18px;
+    
+}
+#maoxianchuanshuo{
+    width: 80%;
+    height: 422px;
+    margin: 0 auto;
+
+}
+#gaoxiaobaoman{
+    width: 80%;
+    height: 422px;
+    margin: 0 auto;
+
+}
+div.gaoxiao{
+    width: 180px;
+    padding: 0 5px 24px;
+    height: 300px;
+    float: left;
+    margin-left: 10px;
+}
+.gaoxiao a{
+    width: 180px;
+    height: 300px;
+    
+}
+.gaoxiao a div{
+    width: 100%;
+    padding-top: 133%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 2px;
+}
+.gaoxiao p{
+    margin: 10px 0;
+    padding: 0;
+    color: black;
+    font-size: 18px;
+    
+}

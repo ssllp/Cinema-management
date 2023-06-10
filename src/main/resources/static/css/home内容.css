@@ -1,0 +1,180 @@
+#neirong div>ul>li>a{
+    color: black;
+    
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    width: 70px;
+    background-color: black;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+    
+}
+#neirong div>ul{
+    margin-top: 30px;
+    float: left;
+    margin-left: 520px;
+    
+}
+#neirong div>ul>li{
+    margin-left: 20px;
+    text-align: center;
+}
+#neirong div>ul>li>a:hover{
+    background-color: #02a388;
+}
+/* #neirong{
+    background: url(../img/bg1.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+} */
+h3.biaoqian{
+    margin: 1.5em 0 1em;
+    font-size: 2em;
+    text-transform: uppercase;
+    color: #0c0d0d;
+    text-align: left;
+    float: left;
+    margin-bottom: 0px;
+}
+h3.biaoqian span{
+    color: red;
+}
+.dy{
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(168, 158, 158, 0.35);
+    margin-right: 1%;
+    margin-bottom: 1.5%;
+    position: relative;
+    padding-left: 0;
+    width: 24%;
+    height: 321px;
+    float: left;
+    background: black;
+}
+.dy a{
+    display: block;
+    width: 194px;
+    height: 269px;
+    
+}
+.dy i{
+    color: white;
+    position: absolute;
+    font-size: 74px;
+    left: 65px;
+    top: 90px;
+    display: none;
+    cursor: pointer;
+}
+.dy:hover i{
+    display: block;
+    transition: 1s;
+}
+.dy a:hover{
+    
+    opacity: 0.3;
+    content: "";
+    
+
+}
+#hot{
+    width: 100%;
+    height: 681px;
+    float: left;
+}
+.dy a img{
+    height: 269px;
+    max-width: 100%;
+    float: left;
+    max-height: 100%;
+}
+#zuotu img{
+    margin-left: 0px;
+    height: 381px;
+    width: 254px;
+    display: none;
+    cursor: pointer;
+}
+#zuotu a:hover{
+opacity: 0.5;
+}
+#biaoti{
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+   
+    color: #02a388;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+#hot div{
+    float: left;
+}
+#biaoti span{
+    color: black;
+}
+.dyname{
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    color: #02a388;
+    font-weight: bold;
+    letter-spacing: 4px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    cursor: pointer;
+    background: white;
+}
+.jieshao{
+    display: none;
+}
+#zhuifanbiao{
+    width: 100%;
+    height: 334px;
+    padding: 2em 1em;
+    box-shadow: 0px 0px 1px #999;
+    float: left;
+    margin-top: 10px;
+}
+#zhuifanbiao .dy,#tuijian .dy,#guoman .dy{
+    width: 194px;
+    margin-top: 10px;
+}
+
+#date li{
+    cursor: pointer;
+    height: 25px;
+    background: gainsboro;
+}
+.zhuilb{
+    display: none;
+    height: 350px;
+    margin-right: 100px;
+    margin-left: 50px;
+    background: black;
+}
+#tuijian{
+    width: 100%;
+    
+    padding: 2em 1em;
+    box-shadow: 0px 0px 1px #999;
+    float: left;
+    margin-top: 10px;
+}
+#guoman{
+    
+    width: 880px;
+    padding: 2em 1em;
+    box-shadow: 0px 0px 1px #999;
+    float: left;
+    margin-top: 10px;
+}
+

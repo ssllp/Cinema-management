@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html lang="en">
+<head>
+    <title>登录注册</title>
+    <link rel="stylesheet" type="text/css" href="../css/log.css">
+    <link rel="icon" type="x-icon" href="../img/login.png">
+</head>
+<body>
+<div class="container right-panel-active">
+    <!--登录-->
+    <div class="container__form container--signup">
+        <form id="log-form" action="logincheck" class="form" id="form1" method="post">
+            <h2 class="form__title">登录</h2>
+            <input id="log-name" type="text" placeholder="用户名" class="input" name="username"/>
+            <input id="log-pwd" type="password" placeholder="密码" class="input" name="password"/>
+            <input id="log-btn" class="btn" type="button" value="登录">
+        </form>
+    </div>
+
+    <!-- 注册 -->
+    <div class="container__form container--signin">
+        <form id="reg-form" action="register" class="form" id="form2" method="post">
+            <h2 class="form__title">注册</h2>
+            <input id="reg-name" type="text" placeholder="用户名" class="input"  name="username"/>
+            <input id="reg-tell" type="text" placeholder="手机号" class="input"  name="tell"/>
+            <input id="reg-pwd" type="password" placeholder="密码" class="input" name="password"/>
+            <input id="reg-btn" class="btn" type="button" value="注册">
+        </form>
+    </div>
+
+    <!-- 覆盖 -->
+    <div class="container__overlay">
+        <div class="overlay">
+            <div class="overlay__panel overlay--left">
+                <button class="btn" id="signIn">注册</button>
+            </div>
+            <div class="overlay__panel overlay--right">
+                <button class="btn" id="signUp">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+
+    const signInBtn = document.getElementById("signIn");
+    const signUpBtn = document.getElementById("signUp");
+    const fistForm = document.getElementById("form1");
+    const secondForm = document.getElementById("form2");
+    const container = document.querySelector(".container");
+
+    signInBtn.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+    });
+
+    signUpBtn.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+    });
+    $("#log-btn").click(function (){
+        $.ajax({
+            "url":"/user/userLogin",
+            "data":$("#log-form").serialize(),
+            "type":"post",
+            "dataType":"json",
+            "success":function (json){
+                if(json.state==1){
+                    alert("登录成功")
+                    location.href="../index.html"
+                }else{
+                    alert(json.message)
+                }
+            }
+        })
+    })
+
+    //注册
+    $("#reg-btn").click(function (){
+        $.ajax({
+            "url":"/user/userReg",
+            "data":$("#reg-form").serialize(),
+            "type":"post",
+            "dataType":"json",
+            "success":function (json){
+                if(json.state==1){
+                    alert("注册成功")
+                    location.reload()
+                }else{
+                    alert(json.message)
+                }
+            }
+        })
+    })
+
+</script>
+</body>
+</html>

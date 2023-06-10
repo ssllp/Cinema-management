@@ -1,0 +1,374 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影院信息管理</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <style>
+        table{
+            text-align: center;
+            width: 98%;
+        }
+        .fa{
+            margin-right: 10px;
+        }
+        b{
+            color: #888881;
+        }
+        .table-striped > tbody > tr:nth-of-type(odd) {
+            background-color: #e6e9ef36;
+        }
+        .input-group-addon {
+            color: #5c5757bf;
+            background-color: #eeeeee75;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+        }
+        .btn-primary:hover{
+            background-position: 0;
+        }
+    </style>
+</head>
+<link rel="stylesheet" href="../bootstrap3.3.7/css/bootstrap.css">
+<link rel="stylesheet" href="../css/tanchuangcss.css">
+<link rel="stylesheet" href="../bootstrap3.3.7/css/bootstrap-theme.css">
+<link rel="stylesheet" href="../my/index.css">
+<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+<body style="background-color: rgb(234,237,241);">
+<div id="web">
+    <%--顶部导航栏--%>
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-image: linear-gradient(to bottom, rgb(55,61,65) 0%, rgb(55,61,65) 100%);border: 0">
+        <div class="container navbar-default" style="background-image: linear-gradient(to bottom, rgb(55,61,65) 0%, rgb(55,61,65) 100%);margin-left: 0px">
+            <nav class="navbar" style="display: contents">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#" style="color: white">影院管理系统</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="filmlist.html" style="color: white">影片管理</a></li>
+                            <li><a href="userlist.html" style="color: white">用户管理</a></li>
+                            <li><a href="orderlist.html" style="color: white">订单管理</a></li>
+                        </ul>
+                        <form class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="输入并搜索">
+                            </div>
+                            <button type="submit" class="btn btn-default">搜索</button>
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white;background-image: linear-gradient(to bottom, #191818 0%, #832f6b 100%);" id="span-session"><span class="caret"></span></a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a href="../index.html">网站首页</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="${pageContext.request.contextPath}/admin/logout">退出登录</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+    </nav>
+    <aside style="width: 240px;height: 100%;float: left;background: rgb(51,55,68);position: fixed;margin-top: 20px">
+        <nav style="width: 240px;height: 100%;float: left;margin-top: 30px;">
+            <a href="index.html" class="a" ><i class="fa fa-bar-chart fa-fw"></i>&nbsp;数据显示</a>
+            <a href="userlist.html" class="a"><i class="fa fa-user fa-fw"></i>&nbsp;用户管理</a>
+            <a href="filmlist.html" class="a"><i class="fa fa-video-camera fa-fw"></i>&nbsp;电影管理</a>
+            <a href="cinemalist.html" class="a"  style="color: #239aff;background-color: rgb(41,44,54);"><i class="fa fa-university fa-fw"></i>&nbsp;影院管理</a>
+            <a href="halllist.html" class="a"><i class="fa fa-television fa-fw"></i>&nbsp;影厅管理</a>
+            <a href="schedulelist.html" class="a"><i class="fa fa-th-list fa-fw"></i>&nbsp;电影排片</a>
+            <a href="evalist.html" class="a"><i class="fa fa-twitch fa-fw"></i>&nbsp;评论管理</a>
+            <a href="orderlist.html" class="a"><i class="fa fa-credit-card-alt fa-fw"></i>&nbsp;订单管理</a>
+
+        </nav>
+    </aside>
+
+</div>
+
+<div id="main" style="background: white;">
+    <div class="input-group" style="width: 300px;margin-left: 10px;float: left;margin-top: 20px;">
+        <form class="navbar-form navbar-left" id="search-form" method="get" action="cinemalist.html" style="padding: 0">
+            <input type="text" class="form-control" placeholder="请输入内容" aria-describedby="basic-addon2" name="search" style="width: 70%;" id="input-search" >
+            <button id="btn-search" type="submit"><span class="input-group-addon" id="basic-addon2"><i class="fa fa-search fa-fw"></i></span></button>
+        </form>
+    </div>
+
+    <button class="btn btn-primary" id="button" style="margin-left: 10px;margin-top: 20px;border-radius: 50px;width: 100px;border: 0;background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67,162,255)), to(rgb(67,162,255)));">添加影院</button>
+    <table class="table table-striped table-bordered" style="margin-left: 10px;color: #555551;margin-top: 15px;width: 98%" id="user-table">
+
+        <tr>
+            <td><b>影院编号</b></td>
+            <td><b>影院名称</b></td>
+            <td><b>地址</b></td>
+            <td><b>热度</b></td>
+            <td><b>状态</b></td>
+            <td><b>操作</b></td>
+        </tr>
+
+    </table>
+    <nav aria-label="Page navigation">
+        <b style="float: left;margin-left: 20px;margin-top: 6px;" id="sum">共&nbsp;&nbsp;条数据</b>
+        <ul class="pagination" style="margin-top: 0;margin-left: 20px" id="page-ul">
+
+        </ul>
+    </nav>
+
+    <div id="modal" >
+        <div id="modal-content">
+            <span id="close">&times;</span>
+            <div style="width: 80%;height: 80%;margin: inherit">
+                <form id="add-form">
+                    <div class="form-group">
+                        <label for="inputcinemaname">影院名称</label>
+                        <input type="text" class="form-control" id="inputcinemaname" placeholder="cinemaname" name="cinemaname">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputback">地址</label>
+                        <input type="text" class="form-control" id="inputback" placeholder="地址" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputarea">热度</label>
+                        <input type="text" class="form-control" id="inputarea" placeholder="热度" name="hot">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputticai">状态</label>
+                        <input type="text" class="form-control" id="inputticai" placeholder="状态" name="status">
+                    </div>
+                    <input type="button" class="btn btn-default" id="btn-add" value="添加">
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div id="modal1" style="display: none" >
+        <!-- 弹窗 -->
+
+        <div id="modal-content1">
+            <span id="close1">&times;</span>
+            <div style="width: 80%;height: 80%;margin: inherit">
+                <form id="update-form">
+                    <input type="text" name="cinema_id"  style="display: none;" id="inputcinema_id">
+                    <div class="form-group">
+                        <label for="inputcinemaname1">影院名</label>
+                        <input type="text" class="form-control" id="inputcinemaname1" placeholder="cinemaname" name="cinemaname" >
+                    </div>
+                    <div class="form-group">
+                        <label for="inputback1">地址</label>
+                        <input type="text" class="form-control" id="inputback1" placeholder="地址" name="address" >
+                    </div>
+                    <div class="form-group">
+                        <label for="inputarea1">热度</label>
+                        <input type="text" class="form-control" id="inputarea1" placeholder="热度" name="hot" >
+                    </div>
+                    <div class="form-group">
+                        <label for="inputticai1">状态</label>
+                        <input type="text" class="form-control" id="inputticai1" placeholder="状态" name="status">
+                    </div>
+                    <input type="button" class="btn btn-default" id="btn-update" value="修改">
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var reg = new RegExp("(^|&)" + "page" + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg); //匹配目标参数
+            var reg1 = new RegExp("(^|&)" + "search" + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r1 = window.location.search.substr(1).match(reg1); //匹配目标参数
+            var page;
+            var search;
+            if (r != null) {
+                page=decodeURI(r[2]);
+            }else {
+                page=1;
+            }
+            if (r1 != null) {
+                search=decodeURI(r1[2]);
+            }else {
+                search="nothing";
+            }
+            $.ajax({
+                "url":"/admin/showusername",
+                "type":"get",
+                "dataType":"json",
+                "success":function (res) {
+                    document.getElementById("span-session").innerHTML=res.username+"<span class=\"caret\"></span>"
+                }
+            })
+            $.ajax({
+                "url":"/admin/cinemalist",
+                "data":{"page":page,"search":search},
+                "type":"get",
+                "dataType":"json",
+                "success":function (result) {
+                    var nextpage=parseInt(page-(-1));
+                    var prepage=parseInt(page-1);
+                    document.getElementById("sum").innerHTML="共&nbsp;"+result.total+"&nbsp;条数据"
+                    if (search=="nothing"){
+                        document.getElementById("page-ul").innerHTML+="<li>\n" +
+                            "                <a href='cinemalist.html?page="+prepage+"' aria-label=\"Previous\">\n" +
+                            "                    <span aria-hidden=\"true\">&laquo;</span>\n" +
+                            "                </a>\n" +
+                            "            </li>"
+                        for (j=1;j<=result.pages;j++){
+                            document.getElementById("page-ul").innerHTML+="<li><a href='cinemalist.html?page="+j+"'>"+j+"</a></li>"
+                        }
+                        document.getElementById("page-ul").innerHTML+="<li>\n" +
+                            "                <a href='cinemalist.html?page="+nextpage+"' aria-label=\"Next\">\n" +
+                            "                    <span aria-hidden=\"true\">&raquo;</span>\n" +
+                            "                </a>\n" +
+                            "            </li>"
+                    }else {
+                        document.getElementById("page-ul").innerHTML+="<li>\n" +
+                            "                <a href='cinemalist.html?page="+prepage+"&search="+search+"' aria-label=\"Previous\">\n" +
+                            "                    <span aria-hidden=\"true\">&laquo;</span>\n" +
+                            "                </a>\n" +
+                            "            </li>"
+                        for (j=1;j<=result.pages;j++){
+                            document.getElementById("page-ul").innerHTML+="<li><a href='cinemalist.html?page="+j+"&search="+search+"'>"+j+"</a></li>"
+                        }
+                        document.getElementById("page-ul").innerHTML+="<li>\n" +
+                            "                <a href='cinemalist.html?page="+nextpage+"&search="+search+"' aria-label=\"Next\">\n" +
+                            "                    <span aria-hidden=\"true\">&raquo;</span>\n" +
+                            "                </a>\n" +
+                            "            </li>"
+                    }
+
+                    for (i=0;i<result.list.length;i++){
+                        document.getElementById("user-table").innerHTML+="<tr><td>"+result.list[i].cinema_id+"</td>" +
+                            "<td>"+result.list[i].cinemaname+"</td>" +
+                            "<td>"+result.list[i].address+"</td>" +
+                            "<td>"+result.list[i].hot+"</td>" +
+                            "<td>"+result.list[i].status+"</td>" +
+                            "<td><a  onclick='getAid(this)' id='"+result.list[i].cinema_id+"'><img src='../img/xiugai.png' style='width: 40px;'></a>"+
+                        "<a onclick='getA(this)' id='"+result.list[i].cinema_id+"'><img src='../img/shanchu.png' style='width: 40px;'></a></td></tr>"
+                    }
+
+                }
+            })
+        })
+        $("#btn-add").click(function () {
+            $.ajax({
+                "url":"/admin/addCinema",
+                "data":$("#add-form").serialize(),
+                "type":"post",
+                "dataType":"json",
+                "success":function (json) {
+                    if (json.state==1){
+                        alert("添加成功！")
+                        location.href="cinemalist.html"
+                    }else {
+                        alert(json.message)
+                    }
+                }
+            })
+        })
+    </script>
+    <script>
+        // 点击按钮
+        var button = document.getElementById("button");
+        var modal = document.getElementById("modal")
+        button.onclick = function () {
+            modal.style.display = "block";
+        };
+        //   关闭按钮
+        var modal1 = document.getElementById("modal1");
+        //   关闭按钮
+        document.getElementById("close1").onclick = function () {
+            modal1.style.display = "none";
+        };
+        //   点击其他领域(即弹窗背景)
+        window.onclick = function(event){
+            if(event.target ==modal1){
+                modal1.style.display = "none"
+            }
+        }
+        document.getElementById("close").onclick = function () {
+            modal.style.display = "none";
+        };
+        //   点击其他领域(即弹窗背景)
+        window.onclick = function(event){
+            if(event.target ==modal){
+                modal.style.display = "none"
+            }
+        }
+        function getAid(obj) {
+            id=obj.id;
+            modal1.style.display = "block";
+            $.ajax({
+                "url":"/admin/selectCinema",
+                "data":{"cinema_id":id},
+                "type":"post",
+                "dataType":"json",
+                "success":function (json) {
+                    if (json.state==1){
+                        document.getElementById("inputcinema_id").value=json.data.cinema_id
+                        document.getElementById("inputcinemaname1").value=json.data.cinemaname
+                        document.getElementById("inputback1").value=json.data.address
+                        document.getElementById("inputarea1").value=json.data.hot
+                        document.getElementById("inputticai1").value=json.data.status
+                    }else {
+                        alert(json.message)
+                    }
+                }
+            })
+            $("#btn-update").click(function () {
+                $.ajax({
+                    "url":"/admin/updateCinema",
+                    "data":$("#update-form").serialize(),
+                    "type":"post",
+                    "dataType":"json",
+                    "success":function (json) {
+                        if (json.state==1){
+                            alert("修改成功！")
+                            location.href="cinemalist.html"
+                        }else {
+                            alert(json.message)
+                        }
+                    }
+                })
+            })
+        }
+        function getA(obj) {
+            id=obj.id;
+            if(confirm('确定要删除编号为'+id+'的影院吗')){
+                $.ajax({
+                    "url":"/admin/deleteCinema",
+                    "data":{"cinema_id":id},
+                    "type":"post",
+                    "dataType":"json",
+                    "success":function (json) {
+                        if (json.state==1){
+                            alert("删除成功！")
+                            location.href="cinemalist.html"
+                        }else {
+                            alert(json.message)
+                        }
+                    }
+                })
+            }
+        }
+
+
+    </script>
+
+    <script src="../js/jquery2.2.2.min.js"></script>
+    <script src="../bootstrap3.3.7/js/bootstrap.js"></script>
+</div>
+</body>
+</html>
