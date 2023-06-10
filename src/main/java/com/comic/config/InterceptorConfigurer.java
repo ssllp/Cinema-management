@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 @Configuration //系统配置注解
 public class InterceptorConfigurer implements WebMvcConfigurer {
-
+//ssldsg
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         HandlerInterceptor hi = new LoginInterceptor();
